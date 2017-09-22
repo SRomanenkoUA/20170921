@@ -1,17 +1,17 @@
 'use strict';
 // модель сущности - заполнение
-  const essencePoint = new essenceCreate(
-        'TR_StarterWebApp',
-        'DBP8.sqlite3',
-        'CREATE TABLE IF NOT EXISTS DBP8 (nameActive TEXT,dateIn TEXT, qty INT, price INT)',
-        'INSERT INTO DBP8 VALUES ("@Param1", @Param2, @Param3, @Param4)',
-        'SELECT nameActive, dateIn, qty, price FROM DBP8',
-        'DELETE FROM DBP8 WHERE (nameActive="@Param1")',
-        'WHERE (nameActive="@Param1")',
-        'sqlite3',
-        {items: [
-            {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}]}
-            );
+const essencePoint = new essenceCreate(
+    'TR_StarterWebApp',
+    'DBP8.sqlite3',
+    'CREATE TABLE IF NOT EXISTS DBP8 (nameActive TEXT,dateIn TEXT, qty INT, price INT)',
+    'INSERT INTO DBP8 VALUES ("@Param1", @Param2, @Param3, @Param4)',
+    'SELECT nameActive, dateIn, qty, price FROM DBP8',
+    'DELETE FROM DBP8 WHERE (nameActive="@Param1")',
+    'WHERE (nameActive="@Param1")',
+    'sqlite3',
+    {items: [
+        {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}]}
+);
 
 const configSQLExpress = {
     user: 'sa',
@@ -25,22 +25,21 @@ const configSQLExpress = {
     }
 };
 function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver, vdata) {
-        this.name = vname;
-        this.database = vdatabaseName;
-        this.SQLCreate = vSQLCreate;
-        this.SQLInsert = vSQLInsert;
-        this.SQLSelect = vSQLSelect;
-        this.SQLDelete = vSQLDelete;
-        this.SQLBlock = vBlock;
-        this.dbDriverModel = vDriver;
-        this.dataJSON = vdata;
-        this.db;
-    } // модель сущности - создание структуры
+    this.name = vname;
+    this.database = vdatabaseName;
+    this.SQLCreate = vSQLCreate;
+    this.SQLInsert = vSQLInsert;
+    this.SQLSelect = vSQLSelect;
+    this.SQLDelete = vSQLDelete;
+    this.SQLBlock = vBlock;
+    this.dbDriverModel = vDriver;
+    this.dataJSON = vdata;
+} // модель сущности - создание структуры
 function runSQLToDBDriver(SQLText, typeDB) {
     switch (typeDB){
         case 'sqlite3': //https://www.w3resource.com/node.js/nodejs-sqlite.php
-           db.run(SQLText);
-        break;
+            db.run(SQLText);
+            break;
         case 'orecale12':
             db.run(SQLText);
             break;
@@ -51,13 +50,13 @@ function dbRunSQL(SQLText) {
         runSQLToDBDriver(SQLText, essencePoint.dbDriverModel);
     }
     catch (e)
-        {
-            console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
-        }
+    {
+        console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
+    }
 } // (КТ.001) [SQL] - выполнение запроса без параметров
 function dbRunSQLParam(SQLText, ParamCount, Params) {
-        let paramName="@Param";
-        for (let cntParam=0; cntParam<=ParamCount; cntParam++){
+    let paramName="@Param";
+    for (let cntParam=0; cntParam<=ParamCount; cntParam++){
         paramName = paramName + cntParam.toString();
         SQLText.replace(paramName,Params[cntParam]);
     }
@@ -89,16 +88,16 @@ function dbSelect(SQLText) {
     Console.log('Количество добавленный строк в JSON: '+addRowCount.toString());
 }
 
-
+let db;
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         const sqlite3  = require('sqlite3').verbose();
-        essencePoint.db = new sqlite3.Database(essencePoint.database);
+        db = new sqlite3.Database(essencePoint.database);
         clearDataJSON();
         break;
     case 'SQLExpress':
         const sqlExpress = require('mssql');
-        essencePoint.db = new sqlExpress.
+        db = new sqlExpress.
 
 
         pool1.on('error', err => {

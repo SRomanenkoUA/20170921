@@ -1,3 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 *.log
 /DBP8.sqlite3
+/js/SQLExpr.js
+/js/testClass.js
