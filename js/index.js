@@ -9,7 +9,9 @@
         'DELETE FROM DBP8 WHERE (nameActive="@Param1")',
         'WHERE (nameActive="@Param1")',
         'sqlite3');
-
+var dataJSON = {items: [
+    {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}
+]};
 function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver) {
         this.name = vname;
         this.database = vdatabaseName;
@@ -55,6 +57,19 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
         console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
     }
 } // (КТ.002) [SQL] - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
+function pushToJSON(nameActive,dateIn, qty, price) {
+    dataJSON.items.splice(0,dataJSON.items.length); // обнуляю полностью
+}
+function dbSelect(SQLText) {
+    let addRowCount=0;
+    db.all(SQLText,(err,allRows)=>{
+        allRows.forEach(({first,last,address})=>{
+            pushToJSON({nameActive}, {dateIn},{qty}, {price});
+            addRowCount++;
+        })
+    })
+    Console.log('Количество добавленный строк в JSON: '+addRowCount.toString());
+}
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         const sqlite3  = require('sqlite3').verbose();
