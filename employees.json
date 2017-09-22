@@ -1,6 +1,6 @@
 {
   "list": [
-    { "id": "1", "firstName": "Sergey", "lastName": "Romanenko", "jobTitle": "ID Developer" ,"address": "Ukraine, Kyiv","salary": 20000},
+    { "id": "1", "firstName": "Sergey", "lastName": "Petrov", "jobTitle": "Operator" ,"address": "Ukraine, Kyiv","salary": 2000},
     { "id": "2", "firstName": "Holly", "lastName": "Fax", "jobTitle": "Manager" ,"address": "500 Somewhere Lane","salary": 70000 }
   ]
 }
