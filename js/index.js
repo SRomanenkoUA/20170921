@@ -120,7 +120,7 @@ switch (essencePoint.dbDriverModel){
         if (!fs.existsSync(essencePoint.database)) //Если нету базы - то создаю с нуля
         {
             essencePoint.db = new dbDriver.Database(essencePoint.database);
-            runSQLToDBDriver(essencePoint.SQLCreate, essencePoint.dbDriverModel);
+            dbRunSQL(essencePoint.SQLCreate);
             //console.log('Create Database');
         }
         else
