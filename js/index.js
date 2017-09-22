@@ -1,7 +1,7 @@
 'use strict';
 // модель сущности - заполнение
     const essencePoint = new essenceCreate(
-        'Справочник П8',
+        'TR_StarterWebApp',
         'DBP8.sqlite3',
         'CREATE TABLE IF NOT EXISTS DBP8 (nameActive TEXT,dateIn TEXT, qty INT, price INT)',
         'INSERT INTO DBP8 VALUES ("@Param1", @Param2, @Param3, @Param4)',
