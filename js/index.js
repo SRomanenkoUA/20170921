@@ -26,6 +26,7 @@ const configSQLExpress = {
         idleTimeoutMillis: 30000
     }
 };
+
 function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver, vdata) {
         this.name = vname;
         this.database = vdatabaseName;
@@ -114,6 +115,8 @@ function dbSelect(SQLText) {
     }
     Console.log('Количество добавленный строк в JSON: '+addRowCount.toString());
 }
+
+// Processing
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         dbDriver  = require('sqlite3').verbose();
