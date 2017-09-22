@@ -12,9 +12,6 @@
         {items: [
             {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}]}
             );
-/*var dataJSON = {items: [
-    {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}
-]};*/
 function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver, vdata) {
         this.name = vname;
         this.database = vdatabaseName;
