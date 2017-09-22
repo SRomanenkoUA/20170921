@@ -1,4 +1,4 @@
-
+//https://javascript.ru/forum/server/19133-abstraktnye-klassy.html
 // Классы: https://learn.javascript.ru/es-class
 class test1 {
     constructor(firstName, lastName) {

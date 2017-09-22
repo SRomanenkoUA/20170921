@@ -14,7 +14,6 @@ const config = {
     }
 };
 
-
 function connectSQL(SQLText) {
     sql.connect(config, function (err) {
         if (err) console.log(err.message);

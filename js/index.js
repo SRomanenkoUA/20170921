@@ -13,6 +13,7 @@
             {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}]}
             );
 
+let dbDriver;
 const configSQLExpress = {
     user: 'sa',
     password: '12101976',
@@ -80,26 +81,40 @@ function pushToJSON(nameActive,dateIn, qty, price) {
 }
 function dbSelect(SQLText) {
     let addRowCount=0;
-    db.all(SQLText,(err,allRows)=>{
-        allRows.forEach(({first,last,address})=>{
-            pushToJSON({nameActive}, {dateIn}, {qty}, {price});
-            addRowCount++;
-        })
-    });
+    switch (essencePoint.dbDriverModel) {
+        case 'sqlite3':
+            dbDriver.all(SQLText, (err, allRows) => {
+                allRows.forEach(({first, last, address}) => {
+                    pushToJSON({nameActive}, {dateIn}, {qty}, {price});
+                    addRowCount++;
+                })
+            });
+            break;
+        case 'SQLExpress':
+            dbDriver.connect(configSQLExpress, function (err) {
+                if (err) console.log(err.message);
+                var request = new dbDriver.Request();
+                request.query(SQLText, function (err, recordset) {
+                    if (err) console.log(err.message);
+                    else
+                        recordset.forEach(({first, last, address}) => {
+                            pushToJSON({nameActive}, {dateIn}, {qty}, {price});
+                            addRowCount++;
+                        })
+                });
+            });
+            break;
+    }
     Console.log('Количество добавленный строк в JSON: '+addRowCount.toString());
 }
-
-
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
-        const sqlite3  = require('sqlite3').verbose();
-        essencePoint.db = new sqlite3.Database(essencePoint.database);
+        dbDriver  = require('sqlite3').verbose();
+        essencePoint.db = new dbDriver.Database(essencePoint.database);
         clearDataJSON();
         break;
     case 'SQLExpress':
-        const sqlExpress = require('mssql');
-       // essencePoint.db = new sqlExpress.
-
+        dbDriver = require('mssql');
+        break;
 } // (Process_001) создаю драйвер базы данных
 
-//https://javascript.ru/forum/server/19133-abstraktnye-klassy.html
