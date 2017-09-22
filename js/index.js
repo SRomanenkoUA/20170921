@@ -98,13 +98,8 @@ switch (essencePoint.dbDriverModel){
         break;
     case 'SQLExpress':
         const sqlExpress = require('mssql');
-        essencePoint.db = new sqlExpress.
+       // essencePoint.db = new sqlExpress.
 
-
-        pool1.on('error', err => {
-            console.dir(err.message);
-        });
-        break;
 } // (Process_001) создаю драйвер базы данных
 
 //https://javascript.ru/forum/server/19133-abstraktnye-klassy.html
