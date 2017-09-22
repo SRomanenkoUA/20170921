@@ -22,7 +22,7 @@ function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect,
     } // модель сущности - создание структуры
 function runSQLToDBDriver(SQLText, typeDB) {
     switch (typeDB){
-        case 'sqlite3':
+        case 'sqlite3': //https://www.w3resource.com/node.js/nodejs-sqlite.php
            db.run(SQLText);
         break;
         case 'orecale12':
