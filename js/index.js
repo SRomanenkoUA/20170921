@@ -43,8 +43,14 @@ function runSQLToDBDriver(SQLText, typeDB) {
         case 'sqlite3': //https://www.w3resource.com/node.js/nodejs-sqlite.php
             essencePoint.db.run(SQLText);
         break;
-        case 'orecale12':
-            essencePoint.db.run(SQLText);
+        case 'SQLExpress':
+            dbDriver.connect(configSQLExpress, function (err) {
+                if (err) console.log(err.message);
+                var request = new dbDriver.Request();
+                request.query(SQLText, function (err, recordset) {
+                    if (err) console.log(err.message);
+                });
+            });
             break;
     }
 } // Выполняю запрос в зависимости от драйвера БД
