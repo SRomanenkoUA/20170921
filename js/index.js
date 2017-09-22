@@ -1,4 +1,5 @@
 'use strict';
+const fs = require('fs');
 // модель сущности - заполнение
   const essencePoint = new essenceCreate(
         'TR_StarterWebApp',
@@ -40,10 +41,10 @@ function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect,
 function runSQLToDBDriver(SQLText, typeDB) {
     switch (typeDB){
         case 'sqlite3': //https://www.w3resource.com/node.js/nodejs-sqlite.php
-           db.run(SQLText);
+            essencePoint.db.run(SQLText);
         break;
         case 'orecale12':
-            db.run(SQLText);
+            essencePoint.db.run(SQLText);
             break;
     }
 } // Выполняю запрос в зависимости от драйвера БД
@@ -110,8 +111,19 @@ function dbSelect(SQLText) {
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         dbDriver  = require('sqlite3').verbose();
-        essencePoint.db = new dbDriver.Database(essencePoint.database);
+        if (!fs.existsSync(essencePoint.database)) //Если нету базы - то создаю с нуля
+        {
+            essencePoint.db = new dbDriver.Database(essencePoint.database);
+            runSQLToDBDriver(essencePoint.SQLCreate, essencePoint.dbDriverModel);
+            //console.log('Create Database');
+        }
+        else
+        {
+            essencePoint.db = new dbDriver.Database(essencePoint.database);
+            //console.log('Connect to Database');
+        }
         clearDataJSON();
+
         break;
     case 'SQLExpress':
         dbDriver = require('mssql');
