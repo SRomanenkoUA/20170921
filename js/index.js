@@ -8,11 +8,14 @@
         'SELECT nameActive, dateIn, qty, price FROM DBP8',
         'DELETE FROM DBP8 WHERE (nameActive="@Param1")',
         'WHERE (nameActive="@Param1")',
-        'sqlite3');
-var dataJSON = {items: [
+        'sqlite3',
+        {items: [
+            {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}]}
+            );
+/*var dataJSON = {items: [
     {nameActive: "1", dateIn: '22.09.2017', qty: 0, price: 0}
-]};
-function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver) {
+]};*/
+function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver, vdata) {
         this.name = vname;
         this.database = vdatabaseName;
         this.SQLCreate = vSQLCreate;
@@ -20,7 +23,8 @@ function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect,
         this.SQLSelect = vSQLSelect;
         this.SQLDelete = vSQLDelete;
         this.SQLBlock = vBlock;
-        this.dbDriverModel = vDriver
+        this.dbDriverModel = vDriver;
+        this.dataJSON = vdata;
     } // модель сущности - создание структуры
 function runSQLToDBDriver(SQLText, typeDB) {
     switch (typeDB){
@@ -66,7 +70,7 @@ function dbSelect(SQLText) {
     let addRowCount=0;
     db.all(SQLText,(err,allRows)=>{
         allRows.forEach(({first,last,address})=>{
-            pushToJSON({nameActive}, {dateIn},{qty}, {price});
+            pushToJSON({nameActive}, {dateIn}, {qty}, {price});
             addRowCount++;
         })
     })
