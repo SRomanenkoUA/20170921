@@ -75,10 +75,11 @@ function dbSelect(SQLText) {
     })
     Console.log('Количество добавленный строк в JSON: '+addRowCount.toString());
 }
+let db;
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         const sqlite3  = require('sqlite3').verbose();
-        const db = new sqlite3.Database(essencePoint.database);
+        db = new sqlite3.Database(essencePoint.database);
         clearDataJSON();
         break;
     case 'orecale12':
