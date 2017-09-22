@@ -7,9 +7,10 @@
         'INSERT INTO DBP8 VALUES ("@Param1", @Param2, @Param3, @Param4)',
         'SELECT nameActive, dateIn, qty, price FROM DBP8',
         'DELETE FROM DBP8 WHERE (nameActive="@Param1")',
-        '');
+        '',
+        'sqlite3');
 
-function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock) {
+function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver) {
         this.name = vname;
         this.database = vdatabaseName;
         this.SQLCreate = vSQLCreate;
@@ -17,10 +18,21 @@ function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect,
         this.SQLSelect = vSQLSelect;
         this.SQLDelete = vSQLDelete;
         this.SQLBlock = vBlock;
+        this.dbDriverModel = vDriver
     } // модель сущности - создание структуры
+function runSQLToDBDriver(SQLText, typeDB) {
+    switch (typeDB){
+        case 'sqlite3':
+           db.run(SQLText);
+        break;
+        case 'orecale12':
+            db.run(SQLText);
+            break;
+    }
+} // Выполняю запрос в зависимости от драйвера БД
 function dbRunSQL(SQLText) {
     try {
-    db.run(SQLText);
+        runSQLToDBDriver(SQLText, essencePoint.dbDriverModel);
     }
     catch (e)
         {
@@ -36,7 +48,7 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
     console.log('(КТ.002) Окончательный запрос для выполнения: '+SQLText);
 
     try {
-        db.run(SQLText);
+        runSQLToDBDriver(SQLText, essencePoint.dbDriverModel);
     }
     catch (e)
     {
@@ -44,5 +56,12 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
     }
 } // (КТ.002) модель сущности - SQL - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
 
-const sqlite3  = require('sqlite3').verbose();
-const db = new sqlite3.Database(essencePoint.database);
+
+switch (essencePoint.dbDriverModel){
+    case 'sqlite3':
+        const sqlite3  = require('sqlite3').verbose();
+        const db = new sqlite3.Database(essencePoint.database);
+        break;
+    case 'orecale12':
+        break;
+} // создаю драйвер базы данных
