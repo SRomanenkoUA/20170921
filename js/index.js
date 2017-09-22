@@ -59,6 +59,8 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
 } // (КТ.002) [SQL] - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
 function pushToJSON(nameActive,dateIn, qty, price) {
     dataJSON.items.splice(0,dataJSON.items.length); // обнуляю полностью
+    let item = {nameActive: nameActive, dateIn: dateIn, qty: qty, price: price};
+    dataJSON.item.push(item);
 }
 function dbSelect(SQLText) {
     let addRowCount=0;
