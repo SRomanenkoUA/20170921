@@ -59,7 +59,7 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
     }
 } // (КТ.002) [SQL] - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
 function clearDataJSON(){
-    essencePoint.dataJSON.items.splice(0,dataJSON.items.length); // обнуляю полностью
+    essencePoint.dataJSON.items.splice(0,essencePoint.dataJSON.items.length); // обнуляю полностью
 }
 function pushToJSON(nameActive,dateIn, qty, price) {
     let item = {nameActive: nameActive, dateIn: dateIn, qty: qty, price: price};
