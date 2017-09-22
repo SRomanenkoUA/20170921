@@ -1,6 +1,6 @@
 'use strict';
 // модель сущности - заполнение
-    const essencepoint = new essenceCreate(
+    const essencePoint = new essenceCreate(
         'Справочник П8',
         'DBP8.sqlite3',
         'CREATE TABLE IF NOT EXISTS DBP8 (nameActive TEXT,dateIn TEXT, qty INT, price INT)',
@@ -42,7 +42,7 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
     {
         console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
     }
-} // (КТ.002) модель сущности - SQL - выполнение запроса с параметрами
+} // (КТ.002) модель сущности - SQL - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
 
 const sqlite3  = require('sqlite3').verbose();
-const db = new sqlite3.Database(essencepoint.database);
+const db = new sqlite3.Database(essencePoint.database);
