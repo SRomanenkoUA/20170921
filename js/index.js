@@ -58,10 +58,12 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
         console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
     }
 } // (КТ.002) [SQL] - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
+function clearDataJSON(){
+    essencePoint.dataJSON.items.splice(0,dataJSON.items.length); // обнуляю полностью
+}
 function pushToJSON(nameActive,dateIn, qty, price) {
-    dataJSON.items.splice(0,dataJSON.items.length); // обнуляю полностью
     let item = {nameActive: nameActive, dateIn: dateIn, qty: qty, price: price};
-    dataJSON.item.push(item);
+    essencePoint.dataJSON.item.push(item);
 }
 function dbSelect(SQLText) {
     let addRowCount=0;
@@ -77,6 +79,7 @@ switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         const sqlite3  = require('sqlite3').verbose();
         const db = new sqlite3.Database(essencePoint.database);
+        clearDataJSON();
         break;
     case 'orecale12':
         break;
