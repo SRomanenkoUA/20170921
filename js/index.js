@@ -38,7 +38,7 @@ function dbRunSQL(SQLText) {
         {
             console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
         }
-} // (КТ.001) модель сущности - SQL - выполнение запроса без параметров
+} // (КТ.001) [SQL] - выполнение запроса без параметров
 function dbRunSQLParam(SQLText, ParamCount, Params) {
         let paramName="@Param";
         for (let cntParam=0; cntParam<=ParamCount; cntParam++){
@@ -54,9 +54,7 @@ function dbRunSQLParam(SQLText, ParamCount, Params) {
     {
         console.log('(КТ.001) Ошибка при выполнении запроса к БД ['+SQLText+']: '+e.message);
     }
-} // (КТ.002) модель сущности - SQL - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
-
-
+} // (КТ.002) [SQL] - выполнение запроса с параметрами (запрос, кол.параметров, массив с параметрами)
 switch (essencePoint.dbDriverModel){
     case 'sqlite3':
         const sqlite3  = require('sqlite3').verbose();
@@ -64,4 +62,4 @@ switch (essencePoint.dbDriverModel){
         break;
     case 'orecale12':
         break;
-} // создаю драйвер базы данных
+} // (Process_001) создаю драйвер базы данных
