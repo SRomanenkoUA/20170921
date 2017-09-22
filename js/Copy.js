@@ -105,5 +105,3 @@ switch (essencePoint.dbDriverModel){
         });
         break;
 } // (Process_001) создаю драйвер базы данных
-
-//https://javascript.ru/forum/server/19133-abstraktnye-klassy.html
