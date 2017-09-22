@@ -7,7 +7,7 @@
         'INSERT INTO DBP8 VALUES ("@Param1", @Param2, @Param3, @Param4)',
         'SELECT nameActive, dateIn, qty, price FROM DBP8',
         'DELETE FROM DBP8 WHERE (nameActive="@Param1")',
-        '',
+        'WHERE (nameActive="@Param1")',
         'sqlite3');
 
 function essenceCreate(vname, vdatabaseName, vSQLCreate, vSQLInsert, vSQLSelect, vSQLDelete, vBlock, vDriver) {
