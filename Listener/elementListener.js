@@ -1,3 +1,7 @@
+function viewGrid() {
+    let newContent="";
+
+}
 function fshowList() {
 let newContent="";
 
@@ -16,7 +20,6 @@ function ffilterRec() {
 
 }
 
-
 let elShowList = document.getElementById('showList'); // оторбразить список
 elShowList.addEventListener('click',fshowList, false);
 
@@ -28,3 +31,5 @@ eldeleteRec.addEventListener('click',fdeleteRec, false);
 
 let elfilterRec = document.getElementById('filterRec'); // оторбразить список
 elfilterRec.addEventListener('click',ffilterRec, false);
+
+window.addEventListener('load', viewGrid, false);
