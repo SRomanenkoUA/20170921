@@ -1,16 +1,16 @@
 function showList() {
-var newContent="";
+let newContent="";
 
 }
 
-var elShowList = document.getElementById('showList'); // оторбразить список
+let elShowList = document.getElementById('showList'); // оторбразить список
 elShowList.addEventListener('click',showList, false);
 
-var elinsertRec = document.getElementById('insertRec'); // оторбразить список
+let elinsertRec = document.getElementById('insertRec'); // оторбразить список
 elinsertRec.addEventListener('click',showList, false);
 
-var eldeleteRec = document.getElementById('deleteRec'); // оторбразить список
+let eldeleteRec = document.getElementById('deleteRec'); // оторбразить список
 eldeleteRec.addEventListener('click',showList, false);
 
-var elfilterRec = document.getElementById('filterRec'); // оторбразить список
+let elfilterRec = document.getElementById('filterRec'); // оторбразить список
 elfilterRec.addEventListener('click',showList, false);
