@@ -26,7 +26,7 @@ function ffilterRec() {
 }
 */
 function fshowList() {
-
+    document.getElementById('content').innerHTML = '<b>Привте братва</b>';
 }
 
 var elShowList = document.getElementById('showList'); // оторбразить список
